@@ -46,7 +46,7 @@ Flags:
 
 var (
 	holder   = flag.String("c", "Google LLC", "copyright holder")
-	license  = flag.String("l", "apache", "license type: apache, bsd, mit")
+	license  = flag.String("l", "apache", "license type: apache, bsd, mit, agpl")
 	licensef = flag.String("f", "", "license file")
 	year     = flag.String("y", fmt.Sprint(time.Now().Year()), "copyright year(s)")
 )
@@ -140,7 +140,7 @@ func addLicense(path string, fmode os.FileMode, tmpl *template.Template, data *c
 		return nil
 	case ".c", ".h":
 		lic, err = prefix(tmpl, data, "/*", " * ", " */")
-	case ".js", ".jsx", ".tsx", ".css", ".tf":
+	case ".js", ".jsx", ".ts", ".tsx", ".css", ".tf":
 		lic, err = prefix(tmpl, data, "/**", " * ", " */")
 	case ".cc", ".cpp", ".cs", ".go", ".hh", ".hpp", ".java", ".m", ".mm", ".proto", ".rs", ".scala", ".swift", ".dart", ".groovy", ".kt", ".kts":
 		lic, err = prefix(tmpl, data, "", "// ", "")
